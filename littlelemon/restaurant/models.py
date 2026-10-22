@@ -15,4 +15,4 @@ class Booking(models.Model):
     booking_date = models.DateField()
 
     def __str__(self):
-        return f'{self.name}={self.price}'
+        return f'{self.name}'
