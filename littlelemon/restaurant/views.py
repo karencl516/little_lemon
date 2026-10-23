@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated , IsAdminUser
 from rest_framework import generics,status
 
 from django.contrib.auth.models import User
@@ -17,12 +17,12 @@ class BookingViewSet(ModelViewSet):
 class MenuItemView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = [IsAuthenticated]   
+    permission_classes = [IsAuthenticated,IsAdminUser]   
 
 class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = [IsAuthenticated]   
+    permission_classes = [IsAuthenticated,IsAdminUser]   
 
 class UserViewSet(ModelViewSet):
    queryset = User.objects.all()
