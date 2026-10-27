@@ -1,0 +1,25 @@
+{%load static%}
+
+<header>
+    <img src="{% static 'img/logo.png' %}" />
+</header>
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'book' %}">Book</a></li>
+        <li><a href="{% url 'reservations' %}">Reservations</a></li>
+        {% if user.is_authenticated %}
+        <li>
+            <form method="post" action="{% url 'web_logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+        {% else %}
+        <li><a href="{% url 'web_login' %}">Login</a></li>
+        <!-- <li><a href="{% url 'register' %}">Register</a></li> -->
+        {% endif %}
+    </ul>
+</nav>

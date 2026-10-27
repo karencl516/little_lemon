@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+  <article>
+    <h1>Register</h1>
+    <form id="register-form">
+      <p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" maxlength="150" required>
+      </p>
+      <p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+      </p>
+      <button type="submit">Register</button>
+      <p id="message"></p>
+    </form>
+    <p>Already registered? <a href="{% url 'web_login' %}">Login here</a></p>
+  </article>
+</section>
+<script>
+  document.getElementById('register-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+    const message = document.getElementById('message')
+
+    fetch("{% url 'registration' %}", {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value,
+      }),
+    })
+      .then(r => r.json().then(data => ({ ok: r.ok, data })))
+      .then(({ ok, data }) => {
+        if (ok) {
+          window.location.href = "{% url 'web_login' %}"
+          return
+        }
+        message.textContent = Object.values(data).flat().join(' ')
+      })
+  })
+</script>
+{% endblock %}

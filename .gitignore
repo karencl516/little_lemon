@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Entorno virtual
+myenv/
+venv/
+.venv/
+
+# Variables de entorno (claves y contraseñas)
+.env
+
+# Base de datos local
+*.sqlite3
