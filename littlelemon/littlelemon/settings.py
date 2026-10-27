@@ -9,11 +9,13 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'little_lemon',
         'USER': 'root',
-        'PASSWORD': '27uIBD/R5_',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
@@ -127,6 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+LOGIN_URL = 'web_login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'web_login'
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (

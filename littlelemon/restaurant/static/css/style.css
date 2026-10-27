@@ -170,7 +170,8 @@ input{
     border: 3px solid #495E57; 
   }
 
-  .heading-shadow {
+  .heading-shadow,
+  .heading_shadow {
     text-shadow: 1px 1px 4px #333333;
   }
 
@@ -233,6 +234,14 @@ footer p {
 .menu-price{
     display: block;
     font-size: 1rem;
+}
+
+.menu-img {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 800px) {
